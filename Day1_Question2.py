@@ -1,48 +1,45 @@
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+
+ class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
+        #l1 --> List 1, L2 --> List 2, Sumode --> resultant linked list, curr -- > pointer
         carry = 0
+        #Create a preceding zero node fro convience
         sumNode = ListNode(0)
+        #start the pointer from this zero node
         curr = sumNode
+        #check if elements are there in both the lists or if there is a carry (edge case)
         while l1 or l2 or carry:
-            #print("inside while")
-            #print("l1 val and l2 val before = ", l1.val,l2.val)
-            #print("check if l1 == true, i,e", l1, " == ", True)
+            #if value in l1 exists get it else mark it as zero. same in l2
             if l1:
-                #print("result true")
                 l1val  = l1.val
             else:
-                #print("result false")
                 l1val = 0
 
             if l2:
                 l2val = l2.val
             else:
                 l2val = 0
-            #print("l1val = ", l1val, "l2val = ", l2val)
 
-            #print("type l1 and l2  = ", type(l1), type(l2))
-
+            # if the curr sum in the curr column including carry is lesse than9
+            # do tsratight additon and store the result in res node
             if l1val + l2val+carry <=9:
-                #print("summing ", l1val , " + ", l2val)
-                #print("type = ", type(carry), " type = ", type(l1val))
                 summ = int((l1val + l2val + carry))
                 carry= int((l1val + l2val + carry)/10)
-                #print("ans = ",summ)
-                #print("carry = ", carry)
                 res = ListNode(summ)
             else:
-                #print("summing ", l1val , " + ", l2val)
+                # if sum >9 , we need to get result sum of curr colm by taking
+                # mod and carry will be the quotient.
                 res = ListNode(int((l1val + l2val + carry)%10))
-                #print("ans = ", (l1val + l2val + carry)%10)
                 carry= int((l1val + l2val + carry)/10)
-                #print("carry = ", carry)
 
+            # curr is a pointer of a sumNode linked list. in the start it points
+            #  to zero node, in each iteration update the link and move the pointer
             curr.next = res
             curr = curr.next
 
