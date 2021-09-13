@@ -20,5 +20,5 @@ class Solution:
 
 
             final_list.append(dp.copy())
-                
+
         return final_list
