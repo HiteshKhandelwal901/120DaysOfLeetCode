@@ -14,7 +14,7 @@ def remove_node_without_buffer(head):
         #loop fast pointer from slow pointer's location to the end 
         while(runner!=None):
             if runner.next.data == curr.data:
-                runner.next = cur.next.next
+                runner.next = curr.next.next
             else:
                 runner = runner.next
     return head
